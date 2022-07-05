@@ -7,22 +7,22 @@ import { tw } from "@twind";
 export default function TodoComponent() {
   const [todoEl, setTodoEL] = useState("");
   const [todos, setTodos] = useState<string[]>([]);
-  const btn = tw
-    `px-2 py-1 border-gray-200 border-2 hover:bg-gray-200 focus:outline-none`;
+  const btn = tw`px-2 py-1 border-gray-200 border-2 hover:bg-gray-200 focus:outline-none`;
 
   return (
     <div class={tw`h-2/3 w-1/2 flex flex-col justify-center ites-center gap-3`}>
       <div class={tw`flex gap-3 h-[10%] w-full`}>
         <input
           type="text"
-          class={tw
-            `flex-grow-1 outline-none focus:outline-none border-gray-200 border-2 p-2`}
+          class={tw`flex-grow-1 outline-none focus:outline-none border-gray-200 border-2 p-2`}
           placeholder="Enter new ToDo"
-          onChange={(e: any) => {
-            setTodoEL(e.target.value);
+          onChange={(e: Event) => {
+            if (e.target instanceof HTMLInputElement){
+                setTodoEL(e.target.value);
+            }
           }}
-        >
-        </input>
+          value={todoEl}
+        ></input>
         <button
           class={btn}
           onClick={() => {
